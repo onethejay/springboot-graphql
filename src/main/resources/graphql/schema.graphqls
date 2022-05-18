@@ -1,0 +1,10 @@
+type Query {
+    boardList: [Board]
+    board(id: ID): Board
+}
+
+type Board {
+    id: ID!
+    title: String!
+    content: String!
+}
