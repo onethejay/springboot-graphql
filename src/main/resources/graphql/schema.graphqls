@@ -4,7 +4,16 @@ type Query {
 }
 
 type Board {
-    id: ID!
-    title: String!
-    content: String!
+    id: ID
+    title: String
+    content: String
+}
+
+type Mutation {
+    create(title: String, content: String): Board
+}
+
+input BoardInput {
+    title: String
+    content: String
 }

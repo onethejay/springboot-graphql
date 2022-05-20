@@ -1,0 +1,7 @@
+mutation ($title: String!, $content: String!){
+    create(title: $title, content: $content) {
+        id
+        title
+        content
+    }
+}
