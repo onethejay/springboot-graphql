@@ -1,4 +1,4 @@
-mutation ($input: BoardInput){
+mutation ($input: BoardInput!){
     update(boardInput: $input) {
         id
         title

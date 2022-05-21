@@ -12,7 +12,7 @@ type Board {
 type Mutation {
     create(boardInput: BoardInput): Board
     update(boardInput: BoardInput): Board
-    delete(id: ID): Boolean
+    delete(id: ID!): Boolean
 }
 
 input BoardInput {

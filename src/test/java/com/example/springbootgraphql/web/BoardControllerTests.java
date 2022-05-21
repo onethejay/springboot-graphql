@@ -43,9 +43,14 @@ class BoardControllerTests {
     @DisplayName("3. 게시글 create")
     @Test
     void test_3(){
-        Map<String, Object> dto = new HashMap<>();
-        dto.put("title", "제목5");
-        dto.put("content", "내용5");
+//        Map<String, Object> dto = new HashMap<>();
+//        dto.put("title", "제목5");
+//        dto.put("content", "내용5");
+
+        BoardDto dto = BoardDto.builder()
+                .title("제목5")
+                .content("내용5")
+                .build();
 
         this.graphQlTester.documentName("create")
                 .variable("input", dto)

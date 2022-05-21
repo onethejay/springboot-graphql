@@ -36,7 +36,7 @@ public class BoardController {
     }
 
     @MutationMapping
-    public BoardDto update1(@Argument BoardDto boardInput) {
+    public BoardDto update(@Argument BoardDto boardInput) {
         System.out.println("BoardInput :: " + boardInput);
         return boardService.update(boardInput);
     }
