@@ -10,10 +10,13 @@ type Board {
 }
 
 type Mutation {
-    create(title: String, content: String): Board
+    create(boardInput: BoardInput): Board
+    update(boardInput: BoardInput): Board
+    delete(id: ID): Boolean
 }
 
 input BoardInput {
+    id: ID
     title: String
     content: String
 }

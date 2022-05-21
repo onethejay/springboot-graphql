@@ -3,15 +3,15 @@ package com.example.springbootgraphql.web;
 import com.example.springbootgraphql.dto.BoardDto;
 import com.example.springbootgraphql.service.BoardService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.web.ProjectedPayload;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 public class BoardController {
@@ -30,12 +30,20 @@ public class BoardController {
     }
 
     @MutationMapping
-    public BoardDto create(@Argument String title, @Argument String content) {
-        BoardDto boardDto = BoardDto.builder()
-                .title(title)
-                .content(content)
-                .build();
+    public BoardDto create(@Argument BoardDto boardInput) {
+        System.out.println("BoardInput :: " + boardInput);
+        return boardService.create(boardInput);
+    }
 
-        return boardService.create(boardDto);
+    @MutationMapping
+    public BoardDto update1(@Argument BoardDto boardInput) {
+        System.out.println("BoardInput :: " + boardInput);
+        return boardService.update(boardInput);
+    }
+
+    @MutationMapping
+    public Boolean delete(@Argument Long id) {
+        boardService.delete(id);
+        return true;
     }
 }

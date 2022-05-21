@@ -43,14 +43,47 @@ class BoardControllerTests {
     @DisplayName("3. 게시글 create")
     @Test
     void test_3(){
+        Map<String, Object> dto = new HashMap<>();
+        dto.put("title", "제목5");
+        dto.put("content", "내용5");
 
         this.graphQlTester.documentName("create")
-                .variable("title", "제목5")
-                .variable("content", "내용5")
+                .variable("input", dto)
                 .execute()
                 .path("create.title")
                 .entity(String.class)
                 .isEqualTo("제목5");
+    }
 
+    @DisplayName("4. 게시글 update")
+    @Test
+    void test_4(){
+        Map<String, Object> dto = new HashMap<>();
+        dto.put("id", 4);
+        dto.put("title", "제목4가 6으로");
+        dto.put("content", "내용5");
+
+        this.graphQlTester.documentName("update")
+                .variable("input", dto)
+                .execute()
+                .path("update.title")
+                .entity(String.class)
+                .isEqualTo("제목4가 6으로");
+    }
+
+    @DisplayName("5. 게시글 delete")
+    @Test
+    void test_5(){
+
+        //게시글 삭제
+        this.graphQlTester.documentName("delete")
+                .variable("id", 4)
+                .executeAndVerify();
+
+        //삭제한 게시글의 id로 조회 시도
+        this.graphQlTester.documentName("board")
+                .variable("id", 4)
+                .execute()
+                .errors();
     }
 }

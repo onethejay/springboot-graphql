@@ -1,5 +1,5 @@
 mutation ($input: BoardInput){
-    create(boardInput: $input) {
+    update(boardInput: $input) {
         id
         title
         content
