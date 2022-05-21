@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,6 +18,11 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+
+    @SchemaMapping(typeName = "Board")
+    public String author() {
+        return "author return";
+    }
 
     @QueryMapping
     public BoardDto board(@Argument Long id) {

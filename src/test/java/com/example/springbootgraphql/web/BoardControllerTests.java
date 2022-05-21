@@ -91,4 +91,15 @@ class BoardControllerTests {
                 .execute()
                 .errors();
     }
+
+    @DisplayName("6. Dynamic Field Resolver 테스트")
+    @Test
+    void test_6(){
+        this.graphQlTester.documentName("board")
+                .variable("id", "1")
+                .execute()
+                .path("board.author")
+                .entity(String.class)
+                .isEqualTo("author return");
+    }
 }
